@@ -23,9 +23,8 @@ const splitter = {
 //  ==================
 function renderSplitter() { 
 
-    //  Inputs
-    billEl.value = splitter.bill;
-    peopleEl.value = splitter.people;
+    splitter.bill = billEl.value;
+    splitter.people = peopleEl.value;
 
     // Div zero check and tip results
     if(splitter.people != '0') {
@@ -47,12 +46,11 @@ function renderSplitter() {
 //  'Bill' Events
 //  =============
 billEl.addEventListener('click', () => {
-    splitter.bill = '';
+    billEl.value = '';
     renderSplitter();
 })
 
 billEl.addEventListener('input', () => {
-    splitter.bill = billEl.value;
     renderSplitter();
 });
 
@@ -71,8 +69,7 @@ billEl.addEventListener('keydown', (event) => {
             splitter.tip = tipsEl.children[0].textContent;  
             break;
         case 'Delete':
-            splitter.bill = '';            
-            renderSplitter(); 
+            bill.El.value = '';            
             break;
         default: false;        
     };  
@@ -91,6 +88,7 @@ function resetTipEl() {
             event.value = '';
         }
     });
+    splitter.tip = '';
 };
 
 tipsEl.addEventListener('click', (event) => {
@@ -139,10 +137,10 @@ tipsEl.addEventListener('keydown', (event) => {
             event.preventDefault();
             if(event.shiftKey) {                
                 billEl.focus();
-                splitter.bill = '';                
+                billEl.value = '';                
             } else {
                 peopleEl.focus();
-                splitter.people = '';
+                peopleEl.value = '';
             };
             break;
         default: false;  
@@ -178,7 +176,7 @@ tipCustomEl.addEventListener('keydown', (event) => {
 //  'Number of People' Events
 //  =========================
 peopleEl.addEventListener('click', () => {
-    splitter.people = '';
+    peopleEl.value = '';
     renderSplitter();
 });
 
@@ -194,12 +192,13 @@ peopleEl.addEventListener('keydown', (event) => {
             event.preventDefault();
             break;
         case 'Delete':
-            splitter.people = '';
-            peopleEl.value = splitter.people;
+            peopleEl.value = '';
             break;
         case 'Tab':
-            resetTipEl(); 
-            splitter.tip = '';
+            if(event.shiftKey) {
+                resetTipEl(); 
+                splitter.tip = '';
+            }
             break;
         default: false;  
     };
@@ -214,9 +213,8 @@ peopleEl.addEventListener('input', () => {
 //  Reset Event
 //  ===========
 resetBtn.addEventListener('click', () => {
-    splitter.bill = '';
-    splitter.tip = '';
+    billEl.value = '';
     resetTipEl();
-    splitter.people = '';
+    peopleEl.value = '';
     renderSplitter();
 });
