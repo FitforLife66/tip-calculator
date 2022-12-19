@@ -1,0 +1,282 @@
+:root {
+    --clr-very-dark-cyan: #00474B;
+    --clr-dark-cyan: #0D686D;
+    --clr-cyan: #26c2AE;
+    --clr-very-dark-grayish-cyan: #5e7a7d;
+    --clr-dark-grayish-cyan: #7F9D9F;
+    --clr-grayish-cyan: #c5e4e7;
+    --clr-light-grayish-cyan: #F3F9FA; 
+    --clr-coral: #e17457; 
+    --fs-32: 3.2rem;
+    --fs-24: 2.4rem;
+    --fs-20: 2.0rem;
+    --fs-16: 1.6rem;
+    --fs-13: 1.3rem;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    caret-color: transparent;
+    outline: none;
+    font-family: "Space Mono", Arial, Helvetica, sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--clr-grayish-cyan);
+}
+
+.wrap-all {
+    width: 37.5rem;
+    margin: 0 auto;   
+}
+
+#logo {
+    display: block;
+    margin: 5rem auto 4.1rem;
+}
+
+#splitter-wrapper {
+    margin-bottom: 2rem;
+    border-radius: 2.5rem;    
+    padding: 3.2rem;
+    background-color: white;   
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: var(--fs-16);
+    color: var(--clr-very-dark-grayish-cyan);
+}
+
+.input {
+    width: 100%;
+    height: 4.8rem;
+    margin-bottom: 3rem;
+    border: none;
+    border-radius: 0.5rem;  
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size: var(--fs-24);
+    text-align: end;
+    color: var(--clr-very-dark-cyan);
+    background-color: var(--clr-light-grayish-cyan);
+    background-position: 1.5rem center; /* for the icons */
+    background-repeat: no-repeat;
+    caret-color: var(--clr-primary-1) ;
+    position: relative;
+}
+
+.input:focus {
+    outline: 2px solid var(--clr-cyan);
+}
+
+.input::after {
+    content: "Error";
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    color: var(--clr-coral)
+}
+
+/* Hiding the number spinner in Chrome, Safari, Edge, Opera */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hiding the number spinner in Firefox */
+.input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#bill {
+    background-image: url(./img/icon-dollar.svg);
+}
+
+#tips{
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 4.8rem;
+    gap: 1.5rem;
+    justify-content: center;    
+}
+
+.tips__item {
+    grid: 1 span;
+    border: none;
+    border-radius: 0.5rem;
+    text-align: center;
+    line-height: 4.8rem;;
+    font-size: var(--fs-24);
+    color: white;
+    background-color: var(--clr-very-dark-cyan);  
+    cursor: pointer;
+}
+
+.tips__item:hover {
+    color: var(--clr-very-dark-cyan);
+    background-color: var(--clr-cyan);
+}
+
+.tips__item.focus    { 
+    color: var(---clr-very-dark-cyan);
+    background-color: var(--clr-cyan);
+}
+
+.tips__item:not(:nth-last-child(1))::after {
+    content: "%";
+}
+
+#people-label {
+    position: relative;
+}
+
+#people-label::before {
+    content: attr(data-error-msg); 
+    color: var(--clr-coral);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#people {
+    background-image: url(./img/icon-person.svg);
+}
+
+#output-wrapper {
+    background-color: var(--clr-very-dark-cyan);
+    border-radius: 1.5rem;
+    padding: 3.8rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+#results-container > div {
+    margin-bottom: 2.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.output-label {
+    font-size: var(--fs-16);
+    color: white;
+}
+
+.output-label::after {
+    content: "/ person";
+    font-size: var(--fs-13);
+    color: var(--clr-dark-grayish-cyan);
+    display: block;
+}
+
+.result {
+    font-size: var(--fs-32);
+    color: var(--clr-cyan);
+}
+
+.result::before {
+    content: "$";
+}
+
+#reset-btn {
+    width: 100%;
+    height: 4.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: var(--fs-20);
+    text-transform: uppercase;
+    color: var(--clr-very-dark-cyan);
+    background-color: var(--clr-dark-cyan);
+    cursor: pointer;
+}
+
+#reset-btn:hover, #reset-btn:focus {
+    background-color: var(--clr-cyan);
+}
+
+/* PC screens */
+@media screen and (min-width: 960px) {
+
+    .wrap-all {
+        width: 92rem;     
+    }
+
+    #splitter-wrapper {   
+        padding: 4.3rem;; 
+        display: flex;
+        gap: 4.3rem;  
+    }
+    
+    #input-wrapper {
+        width: 37.9rem;    
+    }
+    
+    #tips {
+        grid-template-columns: repeat(3, 1fr);
+    }    
+  
+    #output-wrapper{
+        padding: 6rem 4rem 4rem;
+        flex-grow: 1;        
+    } 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.attribution { 
+    font-size: 11px; text-align: center; 
+    margin-bottom: 2rem;
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
