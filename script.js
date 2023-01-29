@@ -99,7 +99,7 @@ tipsEl.addEventListener('click', (event) => {
     event.target.classList.add('focus');
 
     //  Get the selected tip
-    let tipIndex = [...tipsEl.children].indexOf(event.path[0]);
+    let tipIndex = [...tipsEl.children].indexOf(event.target); 
     splitter.tip = tipsEl.children[tipIndex].textContent;
 
     renderSplitter();  
@@ -111,7 +111,7 @@ tipsEl.addEventListener('keydown', (event) => {
 
     
     //  Get index of the current focussed Tip item
-    let tipIndex = [...tipsEl.children].indexOf(event.path[0]);
+    let tipIndex = [...tipsEl.children].indexOf(event.target);
     switch (event.key) {
         case 'ArrowUp':
         case 'ArrowDown':
